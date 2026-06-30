@@ -267,6 +267,16 @@
       filter: drop-shadow(0 12px 40px rgba(0,0,0,0.1));
     }
 
+    .why__photo {
+      width: 100%;
+      max-width: 300px;
+      height: 380px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
     /* ── Stats ── */
     .stats { background: var(--dark); }
 
@@ -550,6 +560,36 @@
       padding-top: 0.25rem;
     }
 
+    /* ── Photo Gallery ── */
+    .gallery { background: var(--white); }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .gallery__grid { grid-template-columns: 1fr; }
+    }
+
+    .gallery__item {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery__item:hover .gallery__img { transform: scale(1.03); }
+
     /* ── Footer ── */
     footer {
       background: #0a0a0a;
@@ -657,10 +697,7 @@
           </div>
         </div>
         <div class="why__dave-wrap">
-          <picture>
-            <source srcset="images/dave.webp" type="image/webp">
-            <img class="why__dave" src="images/dave.png" alt="Dave the Drop Bear">
-          </picture>
+          <img class="why__photo" src="images/dave-phonebox.jpg" alt="Dave the Drop Bear next to a red telephone box at the Food & Hospitality Expo 2026" loading="lazy">
         </div>
       </div>
     </div>
@@ -717,6 +754,25 @@
         <li class="perfect__item">Community Days</li>
         <li class="perfect__item">Brand Activations</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="gallery">
+    <div class="section-inner">
+      <h2 class="section-title">Dave in Action</h2>
+      <p class="section-sub">Food &amp; Hospitality Expo 2026 — Dave made some friends.</p>
+      <div class="gallery__grid">
+        <div class="gallery__item">
+          <img class="gallery__img" src="images/dave-group.jpg" alt="Dave the Drop Bear posing with guests at the Food &amp; Hospitality Expo 2026" loading="lazy">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="images/dave-selfie.jpg" alt="Group selfie with Dave the Drop Bear at the expo" loading="lazy">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" src="images/dave-booth.jpg" alt="Dave the Drop Bear on the expo floor" loading="lazy">
+        </div>
+      </div>
     </div>
   </section>
 

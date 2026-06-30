@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dave the Drop Bear — Australia's Most Approachable Drop Bear</title>
+  <meta name="description" content="From trade shows to product launches, Dave the Drop Bear is available for hire nationwide. Book Dave for your next event.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:           #E14365;
+      --pink-75:        #E9728C;
+      --pink-25:        #F8D0D9;
+      --dark:           #131313;
+      --darker:         #272727;
+      --gray-dark:      #515151;
+      --gray-mid:       #999999;
+      --gray-light:     #E0E0E0;
+      --gray-lightest:  #F2F2F2;
+      --white:          #FFFFFF;
+      --font-heading:   'Plus Jakarta Sans', sans-serif;
+      --font-body:      'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 4rem);
+      height: 68px;
+    }
+
+    .nav__logo {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav__logo span { color: var(--pink); }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.6rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { transform: scale(0.97); }
+    .btn--primary { background: var(--pink); color: var(--white); }
+    .btn--lg { padding: 1rem 2.25rem; font-size: 1.05rem; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100dvh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem clamp(1.25rem, 5vw, 4rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 35%, rgba(225,67,101,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero__eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pink);
+      background: rgba(225,67,101,0.1);
+      border: 1px solid rgba(225,67,101,0.22);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.25rem;
+    }
+    .hero__title span { color: var(--pink); }
+
+    .hero__subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin: 0 auto 1.25rem;
+      line-height: 1.55;
+    }
+
+    .hero__body {
+      font-size: clamp(0.875rem, 1.4vw, 1rem);
+      color: rgba(255,255,255,0.45);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 4rem;
+    }
+
+    .hero__avail {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+    }
+
+    .hero__image {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 2rem 2rem 0 0;
+      overflow: hidden;
+      box-shadow: 0 -12px 80px rgba(225,67,101,0.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Placeholder shown when no hero image is supplied */
+    .hero__placeholder {
+      background: linear-gradient(160deg, var(--darker) 0%, #1e0a10 100%);
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .hero__placeholder-emoji { font-size: 7rem; }
+    .hero__placeholder-caption {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.2);
+      font-style: italic;
+    }
+
+    /* ── Shared section styles ── */
+    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem); }
+
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray-dark);
+      max-width: 540px;
+      margin-bottom: 3rem;
+      line-height: 1.65;
+    }
+
+    /* ── Why Hire Dave ── */
+    .why { background: var(--gray-lightest); }
+
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .why__card {
+      background: var(--white);
+      border-radius: 1.25rem;
+      padding: 1.6rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .why__icon { font-size: 1.85rem; flex-shrink: 0; line-height: 1; }
+
+    .why__text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    /* ── Stats ── */
+    .stats { background: var(--dark); }
+
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      overflow: hidden;
+    }
+
+    .stats__item {
+      padding: 2rem 1.6rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stats__item:last-child { border-right: none; }
+
+    .stats__emoji { font-size: 1.6rem; }
+
+    .stats__value {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .stats__label {
+      font-size: 0.825rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .stats__grid { grid-template-columns: repeat(3, 1fr); }
+      .stats__item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .stats__item:nth-child(3n) { border-right: none; }
+    }
+    @media (max-width: 560px) {
+      .stats__grid { grid-template-columns: 1fr 1fr; }
+      .stats__item:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.08); }
+      .stats__item:nth-child(2n) { border-right: none; }
+    }
+
+    /* ── Perfect For ── */
+    .perfect { background: var(--white); }
+
+    .perfect__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.7rem;
+      list-style: none;
+    }
+
+    .perfect__item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.975rem;
+      font-weight: 500;
+      color: var(--dark);
+      padding: 0.85rem 1.1rem;
+      background: var(--gray-lightest);
+      border-radius: 0.75rem;
+    }
+
+    .perfect__item::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: var(--pink);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials { background: var(--gray-lightest); }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .testimonial {
+      background: var(--white);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial__stars { font-size: 0.95rem; letter-spacing: 0.05em; margin-bottom: 0.85rem; }
+
+    .testimonial__quote {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.5;
+      font-style: italic;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial__attr { font-size: 0.78rem; color: var(--gray-mid); }
+
+    /* ── FAQ ── */
+    .faq { background: var(--white); }
+
+    .faq__list { max-width: 680px; }
+
+    .faq__item {
+      border-bottom: 1px solid var(--gray-light);
+      padding: 1.4rem 0;
+    }
+    .faq__item:first-child { border-top: 1px solid var(--gray-light); }
+
+    .faq__q {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.45rem;
+    }
+
+    .faq__a { font-size: 0.975rem; color: var(--gray-dark); line-height: 1.65; }
+
+    /* ── Booking ── */
+    .booking { background: var(--dark); }
+
+    .booking .section-title { color: var(--white); }
+    .booking .section-sub   { color: rgba(255,255,255,0.5); }
+
+    .form {
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 520px) { .form__row { grid-template-columns: 1fr; } }
+
+    .form__field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .form__input,
+    .form__select,
+    .form__textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 0.75rem;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form__input::placeholder,
+    .form__textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .form__input:focus,
+    .form__select:focus,
+    .form__textarea:focus { border-color: var(--pink); }
+
+    .form__select option { background: var(--darker); color: var(--white); }
+    .form__textarea { resize: vertical; min-height: 100px; }
+
+    .form__divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0.25rem 0;
+    }
+
+    .form__optional-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .form__checkbox-q {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.4rem;
+    }
+
+    .form__checkbox-group { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .form__checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      cursor: pointer;
+    }
+    .form__checkbox-label input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--pink);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    #form-msg {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      display: none;
+      padding-top: 0.25rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0a0a0a;
+      padding: 3rem clamp(1.25rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .footer__logo {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .footer__logo span { color: var(--pink); }
+
+    .footer__heading {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer__disclaimer {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.38);
+      max-width: 480px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.65;
+    }
+
+    .footer__copy { font-size: 0.75rem; color: rgba(255,255,255,0.18); }
+    .footer__copy sup { font-size: 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="#" class="nav__logo">Dave<span>.</span></a>
+    <a href="#booking" class="btn btn--primary">Book Dave</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__eyebrow">Available for Events Nationwide</div>
+    <h1 class="hero__title">Dave the<br><span>Drop Bear</span></h1>
+    <p class="hero__subtitle">Australia's Most Approachable Drop Bear.</p>
+    <p class="hero__body">
+      From trade shows and grand openings to product launches and corporate events,
+      Dave has become one of Australia's most photographed event personalities.
+      Whether he's posing for photos, greeting guests or bringing a little extra
+      mascot energy to your event, Dave knows how to leave a lasting impression.
+    </p>
+    <div class="hero__actions">
+      <a href="#booking" class="btn btn--primary btn--lg">Book Dave</a>
+      <span class="hero__avail">Availability is limited.</span>
+    </div>
+    <div class="hero__image">
+      <!--
+        To add a hero photo:
+        1. Add your image to /images/dave-hero.jpg
+        2. Replace the placeholder div below with:
+           <img src="images/dave-hero.jpg" alt="Dave the Drop Bear at an event">
+      -->
+      <div class="hero__placeholder">
+        <span class="hero__placeholder-emoji">🐨</span>
+        <span class="hero__placeholder-caption">Replace with Dave's photo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Hire Dave -->
+  <section class="why">
+    <div class="section-inner">
+      <p class="section-label">Why Dave</p>
+      <h2 class="section-title">What Dave Brings to the Table</h2>
+      <p class="section-sub">Dave's skill set is unique. His approach is consistent. His enthusiasm is… present.</p>
+      <div class="why__grid">
+        <div class="why__card">
+          <span class="why__icon">📸</span>
+          <span class="why__text">Professional photo opportunities</span>
+        </div>
+        <div class="why__card">
+          <span class="why__icon">🐻</span>
+          <span class="why__text">High-energy mascot appearances</span>
+        </div>
+        <div class="why__card">
+          <span class="why__icon">😄</span>
+          <span class="why__text">Crowd engagement</span>
+        </div>
+        <div class="why__card">
+          <span class="why__icon">🎉</span>
+          <span class="why__text">Unforgettable event moments</span>
+        </div>
+        <div class="why__card">
+          <span class="why__icon">✋</span>
+          <span class="why__text">Zero awkward small talk</span>
+        </div>
+        <div class="why__card">
+          <span class="why__icon">⭐</span>
+          <span class="why__text">Main character energy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dave by the Numbers -->
+  <section class="stats">
+    <div class="section-inner">
+      <p class="section-label" style="color: var(--pink);">Dave by the Numbers</p>
+      <h2 class="section-title" style="color: var(--white); margin-bottom: 2.5rem;">The Results Speak<br>for Themselves.</h2>
+      <div class="stats__grid">
+        <div class="stats__item">
+          <span class="stats__emoji">📸</span>
+          <span class="stats__value">Hundreds</span>
+          <span class="stats__label">of photos posed for</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__emoji">🤝</span>
+          <span class="stats__value">Countless</span>
+          <span class="stats__label">new friends made</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__emoji">🍕</span>
+          <span class="stats__value">1</span>
+          <span class="stats__label">attempted pizza theft</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__emoji">🎒</span>
+          <span class="stats__value">0</span>
+          <span class="stats__label">bags carried by Dave</span>
+        </div>
+        <div class="stats__item">
+          <span class="stats__emoji">✈️</span>
+          <span class="stats__value">1</span>
+          <span class="stats__label">handler almost missed their flight</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perfect For -->
+  <section class="perfect">
+    <div class="section-inner">
+      <p class="section-label">Versatile</p>
+      <h2 class="section-title">Perfect For</h2>
+      <p class="section-sub">Dave is experienced across a wide range of event formats. He adapts well. Mostly.</p>
+      <ul class="perfect__list">
+        <li class="perfect__item">Trade Shows</li>
+        <li class="perfect__item">Hospitality Events</li>
+        <li class="perfect__item">Product Launches</li>
+        <li class="perfect__item">Grand Openings</li>
+        <li class="perfect__item">Birthday Parties</li>
+        <li class="perfect__item">Shopping Centres</li>
+        <li class="perfect__item">School Visits</li>
+        <li class="perfect__item">Charity Events</li>
+        <li class="perfect__item">Community Days</li>
+        <li class="perfect__item">Brand Activations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <p class="section-label">Reviews</p>
+      <h2 class="section-title">What People Are Saying</h2>
+      <p class="section-sub">Dave has made an impression at events across Australia. These are real things that were said.</p>
+      <div class="testimonials__grid">
+        <div class="testimonial">
+          <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial__quote">"People definitely noticed him."</p>
+          <span class="testimonial__attr">— Event Attendee</span>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial__quote">"He arrived. He waved. He posed. Outstanding."</p>
+          <span class="testimonial__attr">— Event Organiser</span>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial__quote">"Unexpectedly pink."</p>
+          <span class="testimonial__attr">— Trade Show Visitor</span>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial__quote">"The highlight of our expo." <span style="color: var(--gray-mid); font-style: normal; font-size: 0.85em; font-weight: 400;">(Probably.)</span></p>
+          <span class="testimonial__attr">— Brand Activation Manager</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-inner">
+      <p class="section-label">Frequently Asked Questions</p>
+      <h2 class="section-title">We Get a Lot of Questions.</h2>
+      <div class="faq__list">
+        <div class="faq__item">
+          <p class="faq__q">Is Dave friendly?</p>
+          <p class="faq__a">Very.</p>
+        </div>
+        <div class="faq__item">
+          <p class="faq__q">Can Dave dance?</p>
+          <p class="faq__a">Technically yes. Professionally… that's subjective.</p>
+        </div>
+        <div class="faq__item">
+          <p class="faq__q">Does Dave talk?</p>
+          <p class="faq__a">Only through interpretive mascot behaviour.</p>
+        </div>
+        <div class="faq__item">
+          <p class="faq__q">Can Dave provide business advice?</p>
+          <p class="faq__a">No.</p>
+        </div>
+        <div class="faq__item">
+          <p class="faq__q">Does Dave take photos?</p>
+          <p class="faq__a">Constantly.</p>
+        </div>
+        <div class="faq__item">
+          <p class="faq__q">Can Dave attend my event?</p>
+          <p class="faq__a">Submit an enquiry and Dave's management team will review his availability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="booking" id="booking">
+    <div class="section-inner">
+      <p class="section-label">Enquire Now</p>
+      <h2 class="section-title">Book Dave</h2>
+      <p class="section-sub">Complete the form below and Dave's management team will be in touch to discuss availability and logistics.</p>
+      <form class="form" onsubmit="handleSubmit(event)">
+        <div class="form__row">
+          <div class="form__field">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="company">Company</label>
+            <input class="form__input" type="text" id="company" name="company" placeholder="Organisation">
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="email">Email</label>
+          <input class="form__input" type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form__row">
+          <div class="form__field">
+            <label class="form__label" for="date">Event Date</label>
+            <input class="form__input" type="date" id="date" name="date">
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="location">Event Location</label>
+            <input class="form__input" type="text" id="location" name="location" placeholder="City, State">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__field">
+            <label class="form__label" for="type">Type of Event</label>
+            <select class="form__input form__select" id="type" name="type">
+              <option value="" disabled selected>Select event type</option>
+              <option>Trade Show</option>
+              <option>Hospitality Event</option>
+              <option>Product Launch</option>
+              <option>Grand Opening</option>
+              <option>Birthday Party</option>
+              <option>Shopping Centre Activation</option>
+              <option>School Visit</option>
+              <option>Charity Event</option>
+              <option>Community Day</option>
+              <option>Brand Activation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="guests">Estimated Guests</label>
+            <input class="form__input" type="number" id="guests" name="guests" placeholder="e.g. 200" min="1">
+          </div>
+        </div>
+
+        <hr class="form__divider">
+        <p class="form__optional-label">Optional Questions</p>
+
+        <div class="form__field">
+          <p class="form__checkbox-q">Will there be pizza?</p>
+          <div class="form__checkbox-group">
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="pizza" value="yes"> Yes
+            </label>
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="pizza" value="no"> No
+            </label>
+          </div>
+        </div>
+
+        <div class="form__field">
+          <p class="form__checkbox-q">Is parking available for Dave?</p>
+          <div class="form__checkbox-group">
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="parking" value="yes"> Yes
+            </label>
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="parking" value="no"> No
+            </label>
+          </div>
+        </div>
+
+        <div class="form__field">
+          <p class="form__checkbox-q">Will Dave be required to dance?</p>
+          <div class="form__checkbox-group">
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="dance" value="yes"> Yes
+            </label>
+            <label class="form__checkbox-label">
+              <input type="checkbox" name="dance" value="absolutely"> Absolutely
+            </label>
+          </div>
+        </div>
+
+        <div class="form__field">
+          <label class="form__label" for="notes">Anything Dave should know before arriving?</label>
+          <textarea class="form__textarea" id="notes" name="notes" placeholder="Allergies, dress code, whether there will be pizza…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg" style="align-self: flex-start; margin-top: 0.5rem;">Submit Enquiry</button>
+        <p id="form-msg"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer__logo">Dave<span>.</span></p>
+    <p class="footer__heading">Dave's Management</p>
+    <p class="footer__disclaimer">
+      Please note: Dave cannot provide financial advice, strategic consulting or operational support.
+      He can, however, dramatically improve the number of photos taken at your event.
+    </p>
+    <p class="footer__copy">© Dave Management Pty Ltd<sup>*</sup> &nbsp;·&nbsp; <sup>*</sup>Pending Dave's approval.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      var msg = document.getElementById('form-msg');
+      msg.textContent = "Thanks. Dave's management team will be in touch shortly.";
+      msg.style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
